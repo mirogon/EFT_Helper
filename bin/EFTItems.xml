@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<Items>
+	<Item>
+		<ItemType>Food</ItemType>
+		<Name>Alyonka chocolate bar</Name>
+		<NeededForHideout>0</NeededForHideout>
+		<NeededForQuests>0</NeededForQuests>
+		<Weight>0.1</Weight>
+	</Item>
+</Items>
