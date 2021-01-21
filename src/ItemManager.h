@@ -16,7 +16,8 @@ private:
 
 	void LoadItemsFromXmlFile(const std::string& filename);
 
+	std::string xmlDocumentPath;
+	pugi::xml_document xmlDoc;
 	std::vector<Item> items;
-
 };
 

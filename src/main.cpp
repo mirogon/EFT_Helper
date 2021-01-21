@@ -10,6 +10,14 @@ int main()
 	}
 	ItemManager m{ "EFTItems.xml" };
 	
+	Item ak;
+	ak.name = "AK";
+	ak.itemType = ItemType::NONE;
+	ak.neededForHideout = 0;
+	ak.neededForQuests = 5;
+	ak.weight = 55;
+	m.AddItem(ak);
+
 	m.PrintItems_CLI();
 
 	system("pause");

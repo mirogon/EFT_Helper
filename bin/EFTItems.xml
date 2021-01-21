@@ -7,4 +7,18 @@
 		<NeededForQuests>0</NeededForQuests>
 		<Weight>0.1</Weight>
 	</Item>
+	<Item>
+		<ItemType>NONE</ItemType>
+		<Name>AK</Name>
+		<NeededForHideout>0</NeededForHideout>
+		<NeededForQuests>5</NeededForQuests>
+		<Weight>55.000000</Weight>
+	</Item>
+	<Item>
+		<ItemType>NONE</ItemType>
+		<Name>AK</Name>
+		<NeededForHideout>0</NeededForHideout>
+		<NeededForQuests>5</NeededForQuests>
+		<Weight>55.000000</Weight>
+	</Item>
 </Items>

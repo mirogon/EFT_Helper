@@ -3,13 +3,34 @@
 ItemManager::ItemManager(const std::string& xmlFile)
 {
 	items = std::vector<Item>();
-
+	xmlDocumentPath = xmlFile;
 	LoadItemsFromXmlFile(xmlFile);
 }
 
 void ItemManager::AddItem(const Item& pItem)
 {
 	items.push_back(pItem);
+
+	pugi::xml_node rootNode = xmlDoc.first_child();
+	pugi::xml_node itemRoot = rootNode.append_child("Item");
+
+	pugi::xml_node itemType = itemRoot.append_child("ItemType");
+	itemType.append_child(pugi::node_pcdata).set_value(Item::ItemTypeToString(pItem.itemType).c_str());
+	
+	pugi::xml_node name = itemRoot.append_child("Name");
+	name.append_child(pugi::node_pcdata).set_value(pItem.name.c_str());
+
+	pugi::xml_node neededForHideout = itemRoot.append_child("NeededForHideout");
+	neededForHideout.append_child(pugi::node_pcdata).set_value(std::to_string(pItem.neededForHideout).c_str());
+	
+	pugi::xml_node neededForQuests = itemRoot.append_child("NeededForQuests");
+	neededForQuests.append_child(pugi::node_pcdata).set_value(std::to_string(pItem.neededForQuests).c_str());
+
+	pugi::xml_node weight = itemRoot.append_child("Weight");
+	weight.append_child(pugi::node_pcdata).set_value(std::to_string(pItem.weight).c_str());
+
+	xmlDoc.save_file(xmlDocumentPath.c_str());
+
 }
 
 std::vector<Item> ItemManager::GetItems()
@@ -19,11 +40,10 @@ std::vector<Item> ItemManager::GetItems()
 
 void ItemManager::PrintItems_CLI()
 {
-	std::cout << "Items:" << std::endl;
 	for (int i = 0; i < items.size(); ++i)
 	{
 		std::cout << std::endl;
-		std::cout << "--------------------" << std::endl;
+		std::cout << "-------Item---------" << std::endl;
 		std::cout << "ItemType: " << Item::ItemTypeToString(items[i].itemType) << std::endl;
 		std::cout << "Name: "<<items[i].name << std::endl;
 		std::cout << "Needed for Hideout: " << items[i].neededForHideout << std::endl;
@@ -35,7 +55,6 @@ void ItemManager::PrintItems_CLI()
 
 void ItemManager::LoadItemsFromXmlFile(const std::string& filename)
 {
-	pugi::xml_document xmlDoc;
 	pugi::xml_parse_result parseRes = xmlDoc.load_file(filename.c_str());
 	std::cout << filename << ": " << std::endl;
 	for (pugi::xml_node node = xmlDoc.first_child(); node; node = node.next_sibling())

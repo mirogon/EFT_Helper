@@ -27,6 +27,7 @@ std::string Item::ItemTypeToString(ItemType t)
 	switch (t)
 	{
 		case ItemType::FOOD: s = "FOOD"; break;
+		default: s = "NONE";
 	}
 		
 	return s;
